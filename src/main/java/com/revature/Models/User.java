@@ -2,6 +2,7 @@ package com.revature.Models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,6 +18,8 @@ public class User {
     private String userPassword;
     private String email;
 
+    @OneToMany(mappedBy = "user")
+    private List<Task> tasks = new ArrayList<>();
 
     public User() {
     }
