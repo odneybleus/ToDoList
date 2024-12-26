@@ -19,17 +19,11 @@ public class Task {
     public Task() {
     }
 
-    public Task(boolean isCompleated, String taskTitle, User user, int taskID) {
+    public Task(boolean isCompleated, User user, String taskTitle, int taskID) {
         this.isCompleated = isCompleated;
-        this.taskTitle = taskTitle;
         this.user = user;
+        this.taskTitle = taskTitle;
         this.taskID = taskID;
-    }
-
-    public Task(boolean isCompleated, User user, String taskTitle) {
-        this.isCompleated = isCompleated;
-        this.user = user;
-        this.taskTitle = taskTitle;
     }
 
     public boolean isCompleated() {

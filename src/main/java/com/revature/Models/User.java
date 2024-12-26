@@ -1,9 +1,11 @@
 package com.revature.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -14,27 +16,26 @@ public class User {
     private int userID;
 
     @Column(name= "username")
-    private String userName;
+    private String username;
     private String userPassword;
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+
     @OneToMany(mappedBy = "user")
-    private List<Task> tasks = new ArrayList<>();
+    private Set<Task> tasks;
 
     public User() {
     }
 
-    public User(String email, List<Task> tasks, int userID, String userName, String userPassword) {
-        this.email = email;
-        this.userID = userID;
-        this.userName = userName;
+    public User(String userPassword, String username, Set<Task> tasks, Role role, String email) {
         this.userPassword = userPassword;
-    }
-
-    public User(String email, List<Task> tasks, String userPassword, String userName) {
+        this.username = username;
+        this.tasks = tasks;
+        this.role = role;
         this.email = email;
-        this.userPassword = userPassword;
-        this.userName = userName;
     }
 
     public String getEmail() {
@@ -53,12 +54,12 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getUserID() {
@@ -69,4 +70,19 @@ public class User {
         this.userID = userID;
     }
 
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
